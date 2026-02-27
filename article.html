@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Article Title — StateOfRochester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0f0f0f;
+      --paper: #f5f0e8;
+      --paper-dark: #ece6d6;
+      --red: #c0392b;
+      --accent: #1a3a5c;
+      --mid: #7f8c8d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 2rem 1rem 1.4rem;
+      border-bottom: 4px solid var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--paper);
+    }
+    .masthead h1 span { color: var(--red); }
+    .masthead-tagline {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a09080;
+      margin-top: 0.6rem;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper-dark);
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      display: block;
+      padding: 0.65rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      border-right: 1px solid #ccc;
+      transition: background 0.15s;
+    }
+    nav a:first-child { border-left: 1px solid #ccc; }
+    nav a:hover { background: var(--ink); color: var(--paper); }
+    nav a.active { background: var(--accent); color: #fff; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 0;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .breadcrumb a { color: var(--mid); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--ink); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    /* ── ARTICLE LAYOUT ── */
+    .article-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* ── ARTICLE HEADER ── */
+    .article-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px solid var(--ink);
+      animation: fadeUp 0.5s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .article-tag {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      margin-bottom: 1rem;
+    }
+    .article-dek {
+      font-size: 1.1rem;
+      font-style: italic;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+    }
+    .article-meta-divider { color: #ccc; }
+
+    /* ── HERO IMAGE ── */
+    .hero-image-wrap {
+      margin-bottom: 2rem;
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+    .hero-image-wrap img {
+      width: 100%;
+      display: block;
+      /* Placeholder: replace src with your actual image */
+    }
+    .hero-image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--paper-dark);
+      border: 2px dashed #ccc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: #aaa;
+    }
+    .hero-image-placeholder .placeholder-icon {
+      font-size: 2rem;
+    }
+    .hero-image-placeholder p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .image-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #ddd;
+      margin-top: 0.3rem;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      animation: fadeUp 0.5s ease 0.15s both;
+    }
+    .article-body p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #222;
+      margin-bottom: 1.5rem;
+    }
+    .article-body p:first-child::first-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.8rem;
+      font-weight: 900;
+      float: left;
+      line-height: 0.8;
+      margin: 0.1em 0.08em 0 0;
+      color: var(--ink);
+    }
+    .article-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid #ddd;
+    }
+    .article-body blockquote {
+      border-left: 4px solid var(--red);
+      padding: 0.8rem 1.4rem;
+      margin: 2rem 0;
+      background: var(--paper-dark);
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    .article-body blockquote cite {
+      display: block;
+      font-style: normal;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: 0.5rem;
+    }
+
+    /* ── SHARE BAR ── */
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+      flex-wrap: wrap;
+    }
+    .share-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-right: 0.4rem;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      transition: background 0.15s, color 0.15s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .share-btn:hover { background: var(--ink); color: var(--paper); }
+    .share-btn.copied { background: #27ae60; color: #fff; border-color: #27ae60; }
+
+    /* ── BACK TO NEWS ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--ink); }
+
+    /* ── SIDEBAR ── */
+    .article-sidebar {
+      position: sticky;
+      top: 2rem;
+      animation: fadeUp 0.5s ease 0.2s both;
+    }
+    .sidebar-widget {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .sidebar-widget:last-child { border-bottom: none; }
+    .sidebar-widget-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    /* Meter mini widget */
+    .mini-meter-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 2px;
+      background: linear-gradient(to right, #c0392b 0%, #e67e22 25%, #f1c40f 50%, #a8d840 75%, #27ae60 100%);
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .mini-meter-marker {
+      position: absolute;
+      top: -4px;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 18px;
+      background: #fff;
+      border-radius: 1px;
+      box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    }
+    .mini-meter-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .mini-meter-desc {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.5;
+      font-style: italic;
+    }
+    .mini-meter-link {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .mini-meter-link:hover { color: var(--ink); }
+
+    /* Recent articles */
+    .recent-article {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .recent-article:first-child { padding-top: 0; }
+    .recent-article:last-child { border-bottom: none; }
+    .recent-article .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .recent-article h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .recent-article h4 a { color: var(--ink); text-decoration: none; }
+    .recent-article h4 a:hover { color: var(--accent); }
+    .recent-article .date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--mid);
+      margin-top: 0.2rem;
+    }
+
+    /* Tip CTA widget */
+    .tip-cta {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 1.2rem;
+    }
+    .tip-cta p {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #b0a898;
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+    .tip-cta p strong { color: var(--paper); font-style: normal; }
+    .tip-cta a {
+      display: block;
+      text-align: center;
+      background: var(--red);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.65rem 1rem;
+      transition: background 0.15s;
+    }
+    .tip-cta a:hover { background: #a93226; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+    }
+    footer a { color: #999; text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .article-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .article-sidebar { position: static; }
+      nav { flex-wrap: wrap; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow">Rochester, New York · Est. 2025</div>
+  <h1><a href="index.html" style="color:inherit;text-decoration:none;">State<span>Of</span>Rochester</a></h1>
+  <p class="masthead-tagline">The community pulse of the Flower City</p>
+  <div class="masthead-meta">
+    <span id="todays-date"></span>
+    <span>Rochester, NY</span>
+    <span>Independent &amp; Local</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="safety.html">Safety</a>
+  <a href="schools.html">Schools</a>
+  <a href="neighborhoods.html">Neighborhoods</a>
+  <a href="events.html">Events</a>
+  <a href="about.html">About</a>
+  <a href="tips.html">Tips</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span>›</span>
+  <!--
+    UPDATE THIS: Change the category link and label to match the article's category.
+    Example categories: Safety, City Hall, Neighborhoods, Events, Health, Infrastructure
+  -->
+  <a href="#">City Hall</a>
+  <span>›</span>
+  <span style="color:var(--ink);">Article Title</span>
+</div>
+
+<div class="article-wrap">
+
+  <!-- ── MAIN ARTICLE COLUMN ── -->
+  <main>
+
+    <header class="article-header">
+      <!--
+        UPDATE THIS: Change the category tag color/text, title, dek, and metadata.
+        To change the tag color: replace background color inline or use a class.
+      -->
+      <span class="article-tag">City Hall</span>
+      <h1 class="article-title">Rochester City Council Votes on Controversial 2025 Budget — What It Means for You</h1>
+      <p class="article-dek">A $600 million spending plan passed late Tuesday, bringing cuts to parks, more funding for policing, and a proposed 3.2% property tax increase that has divided the city.</p>
+      <div class="article-meta">
+        <span>By Staff Reporter</span>
+        <span class="article-meta-divider">·</span>
+        <span>February 26, 2025</span>
+        <span class="article-meta-divider">·</span>
+        <span>4 min read</span>
+      </div>
+    </header>
+
+    <!--
+      HERO IMAGE
+      Option A — Using a real image: replace the placeholder div below with:
+        <img src="your-image.jpg" alt="Description of image" style="width:100%;display:block;" />
+
+      Option B — No image: delete this entire .hero-image-wrap block.
+    -->
+    <div class="hero-image-wrap">
+      <div class="hero-image-placeholder">
+        <span class="placeholder-icon">🖼</span>
+        <p>Replace with article hero image</p>
+      </div>
+      <p class="image-caption">Caption describing the image · Credit: Photographer Name</p>
+    </div>
+
+    <!--
+      ARTICLE BODY
+      Write your article here. Use <p> for paragraphs, <h2> for subheadings,
+      and <blockquote> with <cite> for quotes from sources.
+      The first paragraph gets a decorative drop cap automatically.
+    -->
+    <div class="article-body">
+      <p>After weeks of heated debate, the Rochester City Council cast their final votes late Tuesday evening on a $600 million budget proposal that will reshape public services across the Flower City. The plan includes cuts to the parks department, increased funding for community policing, and a controversial proposal to raise property taxes by 3.2% — a decision that has residents and local business owners deeply divided.</p>
+
+      <p>Advocates for low-income neighborhoods argue the cuts disproportionately affect the city's most vulnerable residents, while the Mayor's office maintains the budget is a necessary step toward long-term fiscal stability.</p>
+
+      <h2>What's Being Cut</h2>
+
+      <p>The parks department faces a reduction of approximately $4.2 million, which city officials say will result in reduced maintenance schedules at several neighborhood parks and the closure of two community recreation centers during off-peak months. Critics argue the cuts will hurt the neighborhoods that rely on those facilities most.</p>
+
+      <blockquote>
+        "These parks are the living rooms of our neighborhoods. You can't balance a budget on the backs of kids who have nowhere else to go."
+        <cite>— Councilmember Jane Doe, 4th District</cite>
+      </blockquote>
+
+      <h2>What's Being Added</h2>
+
+      <p>The budget allocates an additional $8 million to the Rochester Police Department, funding 25 new officer positions and an expanded community liaison program. Supporters say the investment addresses rising concerns about public safety, while critics question whether more officers is the right solution without accompanying investment in mental health and social services.</p>
+
+      <p>The council also approved a modest increase in funding for the city's housing assistance program, though advocates say the amount falls well short of what's needed to address Rochester's growing housing affordability crisis.</p>
+    </div>
+
+    <!-- SHARE BAR -->
+    <div class="share-bar">
+      <span class="share-label">Share this story</span>
+      <a class="share-btn" id="share-x" href="#" target="_blank" rel="noopener">
+        𝕏 Twitter
+      </a>
+      <a class="share-btn" id="share-fb" href="#" target="_blank" rel="noopener">
+        Facebook
+      </a>
+      <a class="share-btn" id="share-email" href="#">
+        ✉ Email
+      </a>
+      <button class="share-btn" id="share-copy" onclick="copyLink()">
+        🔗 Copy Link
+      </button>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to all stories</a>
+
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="article-sidebar">
+
+    <!-- Crisis Meter mini widget -->
+    <div class="sidebar-widget">
+      <div class="sidebar-widget-label">Community Crisis Meter</div>
+      <div class="mini-meter-label" id="sidebar-meter-label">Elevated Concern</div>
+      <div class="mini-meter-bar">
+        <div class="mini-meter-marker" id="sidebar-meter-marker" style="left:38%;"></div>
+      </div>
+      <p class="mini-meter-desc" id="sidebar-meter-desc">Multiple ongoing concerns across the city. Residents are advised to stay informed.</p>
+      <a href="index.html" class="mini-meter-link">View full meter →</a>
+    </div>
+
+    <!-- Recent articles -->
+    <div class="sidebar-widget">
+      <div class="sidebar-widget-label">Recent Stories</div>
+      <div class="recent-article">
+        <div class="tag">Safety</div>
+        <h4><a href="#">South Wedge Reports Spike in Car Break-Ins; RPD Increases Patrols</a></h4>
+        <div class="date">Feb 25, 2025</div>
+      </div>
+      <div class="recent-article">
+        <div class="tag">Infrastructure</div>
+        <h4><a href="#">Route 104 Closure Extended Through March</a></h4>
+        <div class="date">Feb 24, 2025</div>
+      </div>
+      <div class="recent-article">
+        <div class="tag">Community</div>
+        <h4><a href="#">Highland Park Lilac Festival 2025 Announces Full Schedule</a></h4>
+        <div class="date">Feb 23, 2025</div>
+      </div>
+      <div class="recent-article">
+        <div class="tag">Schools</div>
+        <h4><a href="#">RCSD Announces New After-School Programs Amid Funding Uncertainty</a></h4>
+        <div class="date">Feb 22, 2025</div>
+      </div>
+    </div>
+
+    <!-- Tip CTA -->
+    <div class="sidebar-widget" style="border:none;padding:0;">
+      <div class="tip-cta">
+        <p><strong>Have a tip about this story?</strong> Community sources keep this reporting accurate.</p>
+        <a href="tips.html">Submit a tip →</a>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /article-wrap -->
+
+<footer>
+  <div class="footer-title">StateOfRochester</div>
+  <p>Independent community journalism for Rochester, NY · <a href="tips.html">Submit a Tip</a> · <a href="about.html">About</a> · <a href="tips.html">Contact</a></p>
+  <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
+</footer>
+
+<script>
+  // Date
+  const d = new Date();
+  document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  // Share buttons — auto-populate with current page URL and title
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.querySelector('.article-title').textContent);
+  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+  document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+  document.getElementById('share-email').href = `mailto:?subject=${pageTitle}&body=Thought you might find this interesting: ${pageUrl}`;
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      const btn = document.getElementById('share-copy');
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '🔗 Copy Link'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  /*
+    ── CRISIS METER SIDEBAR ──
+    Keep this in sync with the meterLevel value in index.html.
+    Update both files whenever you change the meter.
+  */
+  const meterLevel = 38;
+  const meterLabel = "Elevated Concern";
+  const meterDesc = "Multiple ongoing concerns across the city. Residents are advised to stay informed.";
+  document.getElementById('sidebar-meter-marker').style.left = meterLevel + '%';
+  document.getElementById('sidebar-meter-label').textContent = meterLabel;
+  document.getElementById('sidebar-meter-desc').textContent = meterDesc;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — StateOfRochester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0f0f0f;
+      --paper: #f5f0e8;
+      --paper-dark: #ece6d6;
+      --red: #c0392b;
+      --accent: #1a3a5c;
+      --mid: #7f8c8d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 2rem 1rem 1.4rem;
+      border-bottom: 4px solid var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--paper);
+    }
+    .masthead h1 span { color: var(--red); }
+    .masthead-tagline {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a09080;
+      margin-top: 0.6rem;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper-dark);
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      display: block;
+      padding: 0.65rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      border-right: 1px solid #ccc;
+      transition: background 0.15s;
+    }
+    nav a:first-child { border-left: 1px solid #ccc; }
+    nav a:hover { background: var(--ink); color: var(--paper); }
+    nav a.active { background: var(--accent); color: #fff; }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .page-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ccc;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 3px solid var(--ink);
+    }
+
+    /* ── BODY COPY ── */
+    .prose p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #2a2a2a;
+      margin-bottom: 1.4rem;
+    }
+    .prose p:last-child { margin-bottom: 0; }
+
+    .prose h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid #ddd;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 4px solid var(--red);
+      padding: 0.8rem 1.4rem;
+      margin: 2rem 0;
+      background: var(--paper-dark);
+    }
+    .pull-quote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* ── PRINCIPLES GRID ── */
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .principle {
+      padding: 1.2rem;
+      background: var(--paper-dark);
+      border-top: 3px solid var(--accent);
+    }
+    .principle-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--mid);
+      margin-bottom: 0.4rem;
+    }
+    .principle h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .principle p {
+      font-size: 0.82rem;
+      color: #555;
+      line-height: 1.5;
+      margin: 0 !important;
+    }
+
+    /* ── CTA STRIP ── */
+    .cta-strip {
+      margin-top: 3rem;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 1.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .cta-strip p {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: #b0a898;
+      margin: 0;
+    }
+    .cta-strip p strong {
+      color: var(--paper);
+      font-style: normal;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      transition: background 0.15s;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #a93226; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+    }
+    footer a { color: #999; text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .principles { grid-template-columns: 1fr; }
+      nav { flex-wrap: wrap; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow">Rochester, New York · Est. 2025</div>
+  <h1><a href="index.html" style="color:inherit;text-decoration:none;">State<span>Of</span>Rochester</a></h1>
+  <p class="masthead-tagline">The community pulse of the Flower City</p>
+  <div class="masthead-meta">
+    <span id="todays-date"></span>
+    <span>Rochester, NY</span>
+    <span>Independent &amp; Local</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="safety.html">Safety</a>
+  <a href="schools.html">Schools</a>
+  <a href="neighborhoods.html">Neighborhoods</a>
+  <a href="events.html">Events</a>
+  <a href="about.html" class="active">About</a>
+  <a href="tips.html">Tips</a>
+</nav>
+
+<main class="page-wrap">
+
+  <div class="page-label">About this site</div>
+  <h1 class="page-title">What Is StateOfRochester?</h1>
+
+  <div class="prose">
+    <p>StateOfRochester is an independent, community-driven news site dedicated to covering the issues, events, and developments that shape daily life in Rochester, New York. Founded in 2025, this site exists because local journalism matters — and because Rochester deserves a clear, honest account of what is happening within its neighborhoods, institutions, and government.</p>
+
+    <div class="pull-quote">
+      <p>"The goal is simple: give Rochester residents the clearest possible picture of what's going on in their city, without spin and without agenda."</p>
+    </div>
+
+    <p>At the center of this site is the <strong>Community Crisis Meter</strong> — a real-time indicator of the city's overall state, updated regularly based on local reports, public data, and community input. It is not a scientific index, but a practical, at-a-glance tool for residents who want to know, at any given moment, whether Rochester is in a period of calm or concern.</p>
+
+    <p>Beyond the meter, StateOfRochester publishes original reporting on city politics, public safety, infrastructure, schools, and community life. All coverage is local. All coverage is free.</p>
+
+    <h2>Editorial Principles</h2>
+    <p>This site operates according to a small set of principles that guide every editorial decision:</p>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-number">01</div>
+        <h3>Independence</h3>
+        <p>StateOfRochester is not affiliated with any political party, government body, or corporate interest. Coverage is not for sale.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-number">02</div>
+        <h3>Accuracy First</h3>
+        <p>Every effort is made to verify information before publication. Corrections are issued promptly and transparently when errors occur.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-number">03</div>
+        <h3>Community-Driven</h3>
+        <p>Readers are the most important source of local knowledge. Tips, leads, and meter feedback from the community directly shape this site's coverage.</p>
+      </div>
+    </div>
+
+    <h2>About the Crisis Meter</h2>
+    <p>The Crisis Meter is updated manually whenever there is a meaningful shift in the overall state of community affairs. It takes into account factors such as public safety incidents, infrastructure disruptions, political or institutional instability, public health concerns, and the general mood reported by community members.</p>
+    <p>The meter is intentionally subjective — it is a synthesis, not an algorithm. Community members are encouraged to submit their own observations and recommendations through the <a href="tips.html" style="color:var(--accent);">Tips page</a>. All feedback is reviewed and considered when the meter is updated.</p>
+
+    <h2>How to Get in Touch</h2>
+    <p>Whether you have a tip about a developing story, a correction to report, or a perspective on where the Crisis Meter should be set, this site wants to hear from you. Use the <a href="tips.html" style="color:var(--accent);">Tips & Contact page</a> to reach out. All messages are read.</p>
+  </div>
+
+  <div class="cta-strip">
+    <p><strong>Have a story tip or meter feedback?</strong><br>Community input keeps this site accurate and relevant.</p>
+    <a href="tips.html" class="btn">Submit a Tip →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-title">StateOfRochester</div>
+  <p>Independent community journalism for Rochester, NY · <a href="tips.html">Submit a Tip</a> · <a href="about.html">About</a> · <a href="tips.html">Contact</a></p>
+  <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
+</footer>
+
+<script>
+  const d = new Date();
+  document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+</body>
+</html>

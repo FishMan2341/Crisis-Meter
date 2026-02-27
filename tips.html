@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tips & Contact — StateOfRochester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0f0f0f;
+      --paper: #f5f0e8;
+      --paper-dark: #ece6d6;
+      --red: #c0392b;
+      --accent: #1a3a5c;
+      --mid: #7f8c8d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 2rem 1rem 1.4rem;
+      border-bottom: 4px solid var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--paper);
+    }
+    .masthead h1 span { color: var(--red); }
+    .masthead-tagline {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a09080;
+      margin-top: 0.6rem;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper-dark);
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      display: block;
+      padding: 0.65rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      border-right: 1px solid #ccc;
+      transition: background 0.15s;
+    }
+    nav a:first-child { border-left: 1px solid #ccc; }
+    nav a:hover { background: var(--ink); color: var(--paper); }
+    nav a.active { background: var(--accent); color: #fff; }
+
+    /* ── PAGE LAYOUT ── */
+    .page-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .page-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .page-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #ccc;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-intro {
+      font-size: 1.05rem;
+      color: #444;
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 3px solid var(--ink);
+    }
+
+    /* ── TWO-COLUMN FORM LAYOUT ── */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--paper);
+    }
+    .form-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .form-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-top: 0.1rem;
+    }
+    .form-card-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.3rem;
+    }
+    .form-card-header p {
+      font-size: 0.82rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    /* ── FORM FIELDS ── */
+    .field {
+      margin-bottom: 1.2rem;
+    }
+    .field label {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.4rem;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      background: var(--paper-dark);
+      border: 1px solid #ccc;
+      border-bottom: 2px solid var(--ink);
+      padding: 0.65rem 0.75rem;
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.9rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      appearance: none;
+      border-radius: 0;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--accent);
+      background: #fff;
+    }
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Meter slider */
+    .meter-slider-wrap {
+      padding: 0.4rem 0 0.2rem;
+    }
+    .meter-bar-preview {
+      width: 100%;
+      height: 12px;
+      border-radius: 2px;
+      background: linear-gradient(to right, #c0392b 0%, #e67e22 25%, #f1c40f 50%, #a8d840 75%, #27ae60 100%);
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    .field input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    .field input[type="range"]:focus { background: transparent; border: none; }
+    .field input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f1c40f; /* default yellow — overridden by JS */
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #f1c40f;
+      cursor: pointer;
+      margin-top: -8px;
+      transition: transform 0.1s;
+    }
+    .field input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .field input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #f1c40f;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #f1c40f;
+      cursor: pointer;
+    }
+    .field input[type="range"]::-webkit-slider-runnable-track {
+      height: 4px;
+      background: #bbb;
+      border-radius: 2px;
+    }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+    .slider-value-display {
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SUBMIT BUTTON ── */
+    .btn-submit {
+      width: 100%;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      padding: 0.85rem 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--accent); }
+    .btn-submit.red { background: var(--red); }
+    .btn-submit.red:hover { background: #a93226; }
+
+    /* ── PRIVACY NOTE ── */
+    .privacy-note {
+      margin-top: 0.7rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.57rem;
+      letter-spacing: 0.08em;
+      color: var(--mid);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ── SUCCESS MESSAGE (hidden by default) ── */
+    .success-msg {
+      display: none;
+      background: #27ae60;
+      color: #fff;
+      padding: 1rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      display: none; /* visible on mobile only */
+      height: 2px;
+      background: var(--ink);
+      margin: 2.5rem 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+    }
+    footer a { color: #999; text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 680px) {
+      .forms-grid { grid-template-columns: 1fr; gap: 0; }
+      .section-divider { display: block; }
+      nav { flex-wrap: wrap; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow">Rochester, New York · Est. 2025</div>
+  <h1><a href="index.html" style="color:inherit;text-decoration:none;">State<span>Of</span>Rochester</a></h1>
+  <p class="masthead-tagline">The community pulse of the Flower City</p>
+  <div class="masthead-meta">
+    <span id="todays-date"></span>
+    <span>Rochester, NY</span>
+    <span>Independent &amp; Local</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="safety.html">Safety</a>
+  <a href="schools.html">Schools</a>
+  <a href="neighborhoods.html">Neighborhoods</a>
+  <a href="events.html">Events</a>
+  <a href="about.html">About</a>
+  <a href="tips.html" class="active">Tips</a>
+</nav>
+
+<main class="page-wrap">
+
+  <div class="page-label">Community Input</div>
+  <h1 class="page-title">Tips & Contact</h1>
+  <p class="page-intro">StateOfRochester runs on community knowledge. Use the forms below to submit a developing news tip or to weigh in on where you think the Crisis Meter should be set. All submissions are read. Your identity is never published without permission.</p>
+
+  <div class="forms-grid">
+
+    <!-- ── FORM 1: NEWS TIP ── -->
+    <div class="form-card">
+      <div class="form-card-header">
+        <div class="form-icon">📰</div>
+        <div>
+          <h2>Submit a Story Tip</h2>
+          <p>Know about something happening in Rochester that deserves coverage? Tell us about it.</p>
+        </div>
+      </div>
+
+      <!--
+        NETLIFY FORMS SETUP:
+        1. Deploy this site to Netlify (drag & drop your folder at netlify.com)
+        2. Go to your site dashboard → Forms — Netlify will auto-detect this form
+        3. Click "Settings" on the form → add your email under "Email Notifications"
+        That's it. Submissions will be emailed to you automatically.
+      -->
+      <form
+        action="https://formspree.io/f/mwvnyddg"
+        method="POST"
+        id="tip-form"
+      >
+        <input type="hidden" name="_subject" value="StateOfRochester — New Story Tip" />
+
+        <div class="field">
+          <label for="tip-name">Your Name <span style="color:#bbb">(optional)</span></label>
+          <input type="text" id="tip-name" name="name" placeholder="Anonymous is fine" />
+        </div>
+
+        <div class="field">
+          <label for="tip-email">Your Email <span style="color:#bbb">(optional — for follow-up only)</span></label>
+          <input type="email" id="tip-email" name="email" placeholder="Never published" />
+        </div>
+
+        <div class="field">
+          <label for="tip-category">Category</label>
+          <select id="tip-category" name="category">
+            <option value="" disabled selected>Select a category</option>
+            <option>Public Safety</option>
+            <option>City Hall / Politics</option>
+            <option>Infrastructure</option>
+            <option>Schools</option>
+            <option>Neighborhoods</option>
+            <option>Health</option>
+            <option>Events</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="tip-subject">What's the tip? *</label>
+          <textarea id="tip-subject" name="tip" placeholder="Describe what you've seen, heard, or know. Include location, names, and any relevant details. The more context the better." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="tip-source">How did you hear about this? <span style="color:#bbb">(optional)</span></label>
+          <input type="text" id="tip-source" name="source" placeholder="e.g. firsthand, local Facebook group, scanner..." />
+        </div>
+
+        <button type="submit" class="btn-submit red">Send Story Tip →</button>
+        <p class="privacy-note">Your contact info, if provided, is used only to follow up on your tip and will never be published or shared.</p>
+        <div class="success-msg" id="tip-success">✓ Tip received — thank you. We'll review it shortly.</div>
+      </form>
+    </div>
+
+    <!-- ── FORM 2: METER FEEDBACK ── -->
+    <div class="form-card">
+      <div class="form-card-header">
+        <div class="form-icon">📊</div>
+        <div>
+          <h2>Crisis Meter Feedback</h2>
+          <p>Think the meter is too high or too low? Tell us what you're seeing on the ground.</p>
+        </div>
+      </div>
+
+      <form
+        action="https://formspree.io/f/xbdawvnj"
+        method="POST"
+        id="meter-form"
+      >
+        <input type="hidden" name="_subject" value="StateOfRochester — Crisis Meter Feedback" />
+
+        <div class="field">
+          <label for="meter-name">Your Name <span style="color:#bbb">(optional)</span></label>
+          <input type="text" id="meter-name" name="name" placeholder="Anonymous is fine" />
+        </div>
+
+        <div class="field">
+          <label for="meter-neighborhood">Your Neighborhood <span style="color:#bbb">(optional)</span></label>
+          <input type="text" id="meter-neighborhood" name="neighborhood" placeholder="e.g. South Wedge, Corn Hill, East Ave..." />
+        </div>
+
+        <div class="field">
+          <label for="meter-suggestion">Where do you think the meter should be?</label>
+          <div class="meter-slider-wrap">
+            <div class="meter-bar-preview"></div>
+            <input
+              type="range"
+              id="meter-suggestion"
+              name="suggested_level"
+              min="0"
+              max="100"
+              value="50"
+              oninput="updateSliderLabel(this.value); updateThumbColor(this);"
+            />
+            <div class="slider-labels">
+              <span>🔴 Critical</span>
+              <span>High</span>
+              <span>Moderate</span>
+              <span>Stable</span>
+              <span>All Clear 🟢</span>
+            </div>
+            <div class="slider-value-display" id="slider-display">Moderate (50)</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="meter-reason">Why do you feel this way? *</label>
+          <textarea id="meter-reason" name="reason" placeholder="What are you observing in your neighborhood or around the city? What's driving your assessment?" required style="min-height:100px;"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="meter-email">Your Email <span style="color:#bbb">(optional)</span></label>
+          <input type="email" id="meter-email" name="email" placeholder="In case we have questions" />
+        </div>
+
+        <button type="submit" class="btn-submit">Send Meter Feedback →</button>
+        <p class="privacy-note">Your contact info, if provided, is never published or shared. All meter updates are made at editorial discretion.</p>
+        <div class="success-msg" id="meter-success">✓ Feedback received — thank you. We take all input into account when updating the meter.</div>
+      </form>
+    </div>
+
+  </div><!-- /forms-grid -->
+
+</main>
+
+<footer>
+  <div class="footer-title">StateOfRochester</div>
+  <p>Independent community journalism for Rochester, NY · <a href="tips.html">Submit a Tip</a> · <a href="about.html">About</a> · <a href="tips.html">Contact</a></p>
+  <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
+</footer>
+
+<script>
+  // Date
+  const d = new Date();
+  document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  // AJAX form submission — redirects to our own thank-you page
+  function handleFormSubmit(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          window.location.href = 'https://crisismeter.netlify.app/thankyou.html';
+        } else {
+          btn.textContent = 'Error — please try again';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        btn.textContent = 'Error — please try again';
+        btn.disabled = false;
+      }
+    });
+  }
+  handleFormSubmit('tip-form');
+  handleFormSubmit('meter-form');
+
+  // Gradient color interpolation for slider thumb
+  const gradientStops = [
+    { pct: 0,   r: 192, g: 57,  b: 43  },
+    { pct: 25,  r: 230, g: 126, b: 34  },
+    { pct: 50,  r: 241, g: 196, b: 15  },
+    { pct: 75,  r: 168, g: 216, b: 64  },
+    { pct: 100, r: 39,  g: 174, b: 96  },
+  ];
+  function interpolateGradientColor(pct) {
+    let lower = gradientStops[0], upper = gradientStops[gradientStops.length - 1];
+    for (let i = 0; i < gradientStops.length - 1; i++) {
+      if (pct >= gradientStops[i].pct && pct <= gradientStops[i + 1].pct) {
+        lower = gradientStops[i]; upper = gradientStops[i + 1]; break;
+      }
+    }
+    const t = (upper.pct === lower.pct) ? 0 : (pct - lower.pct) / (upper.pct - lower.pct);
+    return `rgb(${Math.round(lower.r + t*(upper.r-lower.r))},${Math.round(lower.g + t*(upper.g-lower.g))},${Math.round(lower.b + t*(upper.b-lower.b))})`;
+  }
+  const thumbStyle = document.createElement('style');
+  thumbStyle.id = 'thumb-color-style';
+  document.head.appendChild(thumbStyle);
+  function updateThumbColor(input) {
+    const color = interpolateGradientColor(parseInt(input.value));
+    thumbStyle.textContent = `
+      #${input.id}::-webkit-slider-thumb { background: ${color} !important; box-shadow: 0 0 0 2px ${color}, 0 0 6px ${color}88; }
+      #${input.id}::-moz-range-thumb    { background: ${color} !important; box-shadow: 0 0 0 2px ${color}, 0 0 6px ${color}88; }
+    `;
+  }
+  // Init on load
+  window.addEventListener('load', () => {
+    const s = document.getElementById('meter-suggestion');
+    if (s) updateThumbColor(s);
+  });
+
+  // Slider label
+  const labels = ['Critical', 'High Concern', 'Elevated', 'Moderate', 'Stable', 'All Clear'];
+  function updateSliderLabel(val) {
+    const v = parseInt(val);
+    let label;
+    if      (v < 17) label = 'Critical';
+    else if (v < 33) label = 'High Concern';
+    else if (v < 50) label = 'Elevated';
+    else if (v < 67) label = 'Moderate';
+    else if (v < 83) label = 'Stable';
+    else             label = 'All Clear';
+    document.getElementById('slider-display').textContent = label + ' (' + v + ')';
+  }
+  updateSliderLabel(50);
+
+  // Show success message on submission (Netlify handles the actual POST)
+  // For local testing, intercept submit and show message. On Netlify, the page
+  // will redirect to a thank-you page by default — or you can set action="/thanks.html"
+  document.getElementById('tip-form').addEventListener('submit', function(e) {
+    // Remove this block when deploying — let Netlify handle it natively
+    // Netlify will show a default success page unless you set action="/thanks.html"
+  });
+</script>
+
+</body>
+</html>

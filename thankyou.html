@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You — StateOfRochester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink: #0f0f0f;
+      --paper: #f5f0e8;
+      --paper-dark: #ece6d6;
+      --red: #c0392b;
+      --accent: #1a3a5c;
+      --mid: #7f8c8d;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--ink);
+      color: var(--paper);
+      text-align: center;
+      padding: 2rem 1rem 1.4rem;
+      border-bottom: 4px solid var(--red);
+      position: relative;
+      overflow: hidden;
+    }
+    .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+      pointer-events: none;
+    }
+    .masthead-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .masthead h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--paper);
+    }
+    .masthead h1 span { color: var(--red); }
+    .masthead-tagline {
+      font-family: 'Source Serif 4', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #a09080;
+      margin-top: 0.6rem;
+    }
+    .masthead-meta {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: #666;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--paper-dark);
+      border-bottom: 2px solid var(--ink);
+      display: flex;
+      justify-content: center;
+    }
+    nav a {
+      display: block;
+      padding: 0.65rem 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ink);
+      border-right: 1px solid #ccc;
+      transition: background 0.15s;
+    }
+    nav a:first-child { border-left: 1px solid #ccc; }
+    nav a:hover { background: var(--ink); color: var(--paper); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1.5rem;
+    }
+    .thankyou-card {
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      animation: fadeUp 0.6s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Big checkmark */
+    .check-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #27ae60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      font-size: 2rem;
+      box-shadow: 0 0 0 8px rgba(39,174,96,0.12);
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    .thankyou-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.8rem;
+    }
+    .thankyou-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .thankyou-rule {
+      width: 40px;
+      height: 3px;
+      background: var(--red);
+      margin: 1rem auto;
+    }
+    .thankyou-message {
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+
+    /* What happens next */
+    .next-steps {
+      background: var(--paper-dark);
+      border-top: 3px solid var(--ink);
+      padding: 1.5rem;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+    .next-steps-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+    .next-step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.8rem;
+      align-items: flex-start;
+    }
+    .next-step:last-child { margin-bottom: 0; }
+    .next-step-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--red);
+      min-width: 1.5rem;
+      padding-top: 0.1rem;
+    }
+    .next-step p {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    /* CTA buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .btn-primary:hover { background: var(--accent); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--paper); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: #777;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+    }
+    footer a { color: #999; text-decoration: none; }
+    footer a:hover { color: var(--paper); }
+    footer .footer-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 500px) {
+      nav { flex-wrap: wrap; justify-content: flex-start; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow">Rochester, New York · Est. 2025</div>
+  <h1><a href="index.html" style="color:inherit;text-decoration:none;">State<span>Of</span>Rochester</a></h1>
+  <p class="masthead-tagline">The community pulse of the Flower City</p>
+  <div class="masthead-meta">
+    <span id="todays-date"></span>
+    <span>Rochester, NY</span>
+    <span>Independent &amp; Local</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="safety.html">Safety</a>
+  <a href="schools.html">Schools</a>
+  <a href="neighborhoods.html">Neighborhoods</a>
+  <a href="events.html">Events</a>
+  <a href="about.html">About</a>
+  <a href="tips.html">Tips</a>
+</nav>
+
+<main>
+  <div class="thankyou-card">
+
+    <div class="check-circle">✓</div>
+
+    <p class="thankyou-eyebrow">Submission received</p>
+    <h1 class="thankyou-title">Thank You for Reaching Out</h1>
+    <div class="thankyou-rule"></div>
+    <p class="thankyou-message">Your submission has been received and will be reviewed. Community input is what keeps StateOfRochester accurate, timely, and useful for everyone in Rochester.</p>
+
+    <div class="next-steps">
+      <div class="next-steps-label">What happens next</div>
+      <div class="next-step">
+        <span class="next-step-num">01</span>
+        <p>Your submission is reviewed, typically within 24–48 hours.</p>
+      </div>
+      <div class="next-step">
+        <span class="next-step-num">02</span>
+        <p>If you left your email and follow-up is needed, you'll hear back directly.</p>
+      </div>
+      <div class="next-step">
+        <span class="next-step-num">03</span>
+        <p>Story tips that check out may be developed into published reporting. Meter feedback is factored into the next update.</p>
+      </div>
+    </div>
+
+    <div class="cta-buttons">
+      <a href="index.html" class="btn btn-primary">← Back to Homepage</a>
+      <a href="tips.html" class="btn btn-secondary">Submit Another Tip</a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-title">StateOfRochester</div>
+  <p>Independent community journalism for Rochester, NY · <a href="tips.html">Submit a Tip</a> · <a href="about.html">About</a> · <a href="tips.html">Contact</a></p>
+  <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
+</footer>
+
+<script>
+  const d = new Date();
+  document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+
+</body>
+</html>
