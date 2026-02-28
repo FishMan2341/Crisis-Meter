@@ -1,0 +1,77 @@
+{
+  "articles": [
+    {
+      "slug": "city-council-budget-2025",
+      "title": "Rochester City Council Votes on Controversial 2025 Budget — What It Means for You",
+      "category": "city-hall",
+      "date": "February 26, 2025",
+      "author": "Staff Reporter",
+      "read_time": "4 min read",
+      "featured": true,
+      "dek": "A $600 million spending plan passed late Tuesday, bringing cuts to parks, more funding for policing, and a proposed 3.2% property tax increase that has divided the city."
+    },
+    {
+      "slug": "south-wedge-car-break-ins",
+      "title": "South Wedge Reports Spike in Car Break-Ins; RPD Increases Patrols",
+      "category": "safety",
+      "date": "February 25, 2025",
+      "author": "Staff Reporter",
+      "read_time": "2 min read",
+      "featured": false
+    },
+    {
+      "slug": "route-104-closure",
+      "title": "Route 104 Closure Extended Through March — Alternate Routes Listed",
+      "category": "infrastructure",
+      "date": "February 24, 2025",
+      "author": "Staff Reporter",
+      "read_time": "3 min read",
+      "featured": false
+    },
+    {
+      "slug": "highland-park-lilac-festival-2025",
+      "title": "Highland Park Lilac Festival 2025 Announces Full Schedule",
+      "category": "events",
+      "date": "February 23, 2025",
+      "author": "Staff Reporter",
+      "read_time": "2 min read",
+      "featured": false
+    },
+    {
+      "slug": "rcsd-after-school-programs",
+      "title": "RCSD Announces New After-School Programs Amid Funding Uncertainty",
+      "category": "schools",
+      "date": "February 22, 2025",
+      "author": "Staff Reporter",
+      "read_time": "3 min read",
+      "featured": false
+    },
+    {
+      "slug": "corn-hill-development-opposition",
+      "title": "Corn Hill Residents Push Back Against Proposed Apartment Development",
+      "category": "neighborhoods",
+      "date": "February 21, 2025",
+      "author": "Staff Reporter",
+      "read_time": "4 min read",
+      "featured": false
+    },
+    {
+      "slug": "strong-memorial-staffing-shortage",
+      "title": "Strong Memorial Reports Staffing Shortage as Winter Illness Season Peaks",
+      "category": "health",
+      "date": "February 20, 2025",
+      "author": "Staff Reporter",
+      "read_time": "3 min read",
+      "featured": false
+    },
+    {
+      "slug": "roc-riverway-winter-market",
+      "title": "ROC the Riverway Winter Market Returns to the Inner Loop This Weekend",
+      "category": "events",
+      "date": "February 19, 2025",
+      "author": "Staff Reporter",
+      "read_time": "2 min read",
+      "featured": false
+    }
+  ]
+}

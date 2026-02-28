@@ -18,7 +18,6 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.6; }
 
-    /* MASTHEAD */
     .masthead { background: var(--ink); color: var(--paper); text-align: center; padding: 2rem 1rem 1.4rem; border-bottom: 4px solid var(--red); position: relative; overflow: hidden; }
     .masthead::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px); pointer-events: none; }
     .masthead-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.5rem; }
@@ -27,14 +26,12 @@
     .masthead-tagline { font-family: 'Source Serif 4', serif; font-style: italic; font-size: 0.95rem; color: #a09080; margin-top: 0.6rem; }
     .masthead-meta { display: flex; justify-content: center; gap: 2rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid #333; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; color: #666; text-transform: uppercase; }
 
-    /* NAV */
     nav { background: var(--paper-dark); border-bottom: 2px solid var(--ink); display: flex; justify-content: center; flex-wrap: wrap; }
     nav a { display: block; padding: 0.65rem 1.2rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--ink); border-right: 1px solid #ccc; transition: background 0.15s; }
     nav a:first-child { border-left: 1px solid #ccc; }
     nav a:hover { background: var(--ink); color: var(--paper); }
     nav a.active { background: var(--cat); color: #fff; }
 
-    /* CATEGORY HEADER */
     .cat-header { background: var(--cat); color: #fff; padding: 2.5rem 1.5rem; border-bottom: 3px solid var(--ink); }
     .cat-header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; }
     .cat-icon { font-size: 2.8rem; line-height: 1; }
@@ -42,11 +39,9 @@
     .cat-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; }
     .cat-desc { font-size: 0.95rem; opacity: 0.85; margin-top: 0.4rem; font-style: italic; max-width: 500px; }
 
-    /* LAYOUT */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
     .page-wrap { padding: 2.5rem 0 4rem; }
 
-    /* FEATURED STORY */
     .featured-row { display: grid; grid-template-columns: 1fr 340px; gap: 3rem; padding-bottom: 2.5rem; margin-bottom: 2.5rem; border-bottom: 2px solid var(--ink); }
     .section-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.8rem; padding-bottom: 0.4rem; border-bottom: 2px solid var(--ink); }
     .featured-article .article-tag { display: inline-block; background: var(--cat); color: #fff; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.6rem; margin-bottom: 0.8rem; }
@@ -57,7 +52,6 @@
     .featured-article p { font-size: 1rem; color: #333; line-height: 1.7; }
     .hero-divider { width: 40px; height: 3px; background: var(--cat); margin: 0.8rem 0; }
 
-    /* FEATURED SIDEBAR */
     .featured-sidebar { display: flex; flex-direction: column; gap: 1.2rem; border-left: 1px solid #ddd; padding-left: 2rem; }
     .feat-side-article { padding-bottom: 1.2rem; border-bottom: 1px solid #eee; }
     .feat-side-article:last-child { border-bottom: none; padding-bottom: 0; }
@@ -67,7 +61,6 @@
     .feat-side-article h3 a:hover { color: var(--cat); }
     .feat-side-article .byline { font-family: 'DM Mono', monospace; font-size: 0.57rem; color: var(--mid); }
 
-    /* ARTICLE GRID */
     .articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
     .grid-article { border-top: 3px solid var(--cat); padding-top: 1rem; }
     .grid-article .article-tag { font-family: 'DM Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cat); margin-bottom: 0.4rem; }
@@ -77,11 +70,9 @@
     .grid-article p { font-size: 0.85rem; color: #555; line-height: 1.6; margin-bottom: 0.4rem; }
     .grid-article .byline { font-family: 'DM Mono', monospace; font-size: 0.57rem; color: var(--mid); }
 
-    /* LOAD MORE */
     .load-more-row { text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #ddd; }
     .load-more-note { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; color: var(--mid); text-transform: uppercase; }
 
-    /* FOOTER */
     footer { background: var(--ink); color: #777; text-align: center; padding: 2rem 1rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; }
     footer a { color: #999; text-decoration: none; }
     footer a:hover { color: var(--paper); }
@@ -123,7 +114,6 @@
   <a href="tips.html">Tips</a>
 </nav>
 
-<!-- CATEGORY HEADER -->
 <div class="cat-header">
   <div class="cat-header-inner">
     <div class="cat-icon">🎓</div>
@@ -137,28 +127,26 @@
 
 <div class="container page-wrap">
 
-  <!-- FEATURED STORY -->
   <div class="featured-row">
     <div>
       <div class="section-label">Featured Story</div>
-      <article class="featured-article">
+      <article class="featured-article" id="featured-article">
         <span class="article-tag">Schools</span>
-        <h2><a href="article.html">RCSD Announces New After-School Programs Amid Ongoing Funding Uncertainty</a></h2>
-        <div class="byline">By Staff Reporter · Feb 22, 2025 · 3 min read</div>
+        <h2><a href="#">Loading...</a></h2>
+        <div class="byline">Loading...</div>
         <div class="hero-divider"></div>
-        <p>The Rochester City School District unveiled a new slate of after-school programs this week, targeting students in grades 3 through 8 with expanded offerings in STEM, arts, and athletics. The announcement comes despite continued uncertainty over state funding, with district administrators warning that the programs may need to be scaled back if Albany's proposed education budget cuts go through. Superintendent Dr. Carmine Peluso called the programs "a necessary investment in the students who need us most," and urged parents and community members to contact their state representatives.</p>
+        <p>Loading articles from CMS...</p>
       </article>
     </div>
-    <div class="featured-sidebar">
+    <div class="featured-sidebar" id="featured-sidebar">
       <div class="section-label">Also in Schools</div>
-      <div class="feat-side-article"><div class="article-tag">Schools</div><h3><a href="article.html">East High School Robotics Team Advances to State Championships</a></h3><div class="byline">Feb 20, 2025 · 2 min read</div></div><div class="feat-side-article"><div class="article-tag">Schools</div><h3><a href="article.html">U of R Receives $40M Federal Grant for Medical Research Program</a></h3><div class="byline">Feb 18, 2025 · 3 min read</div></div><div class="feat-side-article"><div class="article-tag">Schools</div><h3><a href="article.html">RCSD Teacher Shortage Worsens as Retirements Outpace Hiring</a></h3><div class="byline">Feb 15, 2025 · 4 min read</div></div>
+      <div class="feat-side-article"><div class="article-tag">Schools</div><h3><a href="#">Loading...</a></h3><div class="byline">Loading...</div></div>
     </div>
   </div>
 
-  <!-- ARTICLE GRID -->
   <div class="section-label">More Stories</div>
-  <div class="articles-grid">
-    <article class="grid-article"><div class="article-tag">Schools</div><h3><a href="article.html">Monroe Community College Launches Free Workforce Training Initiative</a></h3><p>MCC is partnering with three major Rochester employers to offer free six-week certification courses in healthcare support, IT, and manufacturing — open to any Monroe County resident over 18.</p><div class="byline">Feb 13, 2025 · 3 min read</div></article><article class="grid-article"><div class="article-tag">Schools</div><h3><a href="article.html">Franklin High School Gets New Science Wing After Decade of Advocacy</a></h3><p>Ground was broken Monday on a long-awaited science and technology wing at Franklin High School, funded through a combination of state capital funds and a local bond measure passed in 2023.</p><div class="byline">Feb 11, 2025 · 2 min read</div></article><article class="grid-article"><div class="article-tag">Schools</div><h3><a href="article.html">RIT Ranked Among Top 10 Engineering Schools in Latest National Survey</a></h3><p>The Rochester Institute of Technology climbed two spots in the latest U.S. rankings, driven by strong marks in hands-on learning, graduate employment rates, and research output.</p><div class="byline">Feb 9, 2025 · 2 min read</div></article>
+  <div class="articles-grid" id="articles-grid">
+    <article class="grid-article"><div class="article-tag">Schools</div><h3><a href="#">Loading...</a></h3><p>Loading...</p><div class="byline">Loading...</div></article>
   </div>
 
   <div class="load-more-row">
@@ -173,9 +161,67 @@
   <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
 </footer>
 
+<script src="js/data.js"></script>
 <script>
-  const d = new Date();
+  var CATEGORY = 'schools';
+  
+  var d = new Date();
   document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  async function loadCategoryArticles() {
+    try {
+      var response = await fetch('_data/articles.json');
+      var data = await response.json();
+      var allArticles = data.articles || [];
+      
+      var categoryArticles = [];
+      for (var i = 0; i < allArticles.length; i++) {
+        if (allArticles[i].category === CATEGORY) {
+          categoryArticles.push(allArticles[i]);
+        }
+      }
+      
+      if (categoryArticles.length === 0) {
+        document.getElementById('featured-article').innerHTML = '<p>No articles in this category yet.</p>';
+        return;
+      }
+      
+      var featured = categoryArticles[0];
+      var others = categoryArticles.slice(1);
+      
+      var featuredHTML = '<span class="article-tag">' + window.StateOfRochester.getCategoryDisplay(featured.category) + '</span>' +
+        '<h2><a href="article.html?slug=' + featured.slug + '">' + featured.title + '</a></h2>' +
+        '<div class="byline">By ' + featured.author + ' · ' + featured.date + ' · ' + featured.read_time + '</div>' +
+        '<div class="hero-divider"></div>' +
+        '<p>' + (featured.dek || 'Click to read the full story.') + '</p>';
+      document.getElementById('featured-article').innerHTML = featuredHTML;
+      
+      var sidebarHTML = '<div class="section-label">Also in Schools</div>';
+      var sidebarCount = Math.min(others.length, 3);
+      for (var j = 0; j < sidebarCount; j++) {
+        var a = others[j];
+        sidebarHTML = sidebarHTML + '<div class="feat-side-article"><div class="article-tag">' + window.StateOfRochester.getCategoryDisplay(a.category) + '</div><h3><a href="article.html?slug=' + a.slug + '">' + a.title + '</a></h3><div class="byline">' + a.date + ' · ' + a.read_time + '</div></div>';
+      }
+      document.getElementById('featured-sidebar').innerHTML = sidebarHTML;
+      
+      var gridHTML = '';
+      var gridCount = Math.min(others.length - sidebarCount, 6);
+      for (var k = 0; k < gridCount; k++) {
+        var g = others[sidebarCount + k];
+        if (g) {
+          gridHTML = gridHTML + '<article class="grid-article"><div class="article-tag">' + window.StateOfRochester.getCategoryDisplay(g.category) + '</div><h3><a href="article.html?slug=' + g.slug + '">' + g.title + '</a></h3><p>' + (g.dek || 'Click to read more.') + '</p><div class="byline">' + g.date + ' · ' + g.read_time + '</div></article>';
+        }
+      }
+      if (gridHTML) {
+        document.getElementById('articles-grid').innerHTML = gridHTML;
+      }
+      
+    } catch (e) {
+      console.error('Error loading category articles:', e);
+    }
+  }
+
+  loadCategoryArticles();
 </script>
 </body>
 </html>

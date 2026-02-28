@@ -811,7 +811,101 @@
   <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
 </footer>
 
+<script src="js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
+  // Load crisis meter data from CMS
+  async function loadCrisisMeter() {
+    const data = await window.StateOfRochester.fetchCrisisMeter();
+    
+    document.getElementById('meter-marker').style.left = data.level + '%';
+    document.getElementById('crisis-label').textContent = data.label;
+    document.getElementById('crisis-desc').textContent = data.description;
+    
+    if (data.updated_note) {
+      document.getElementById('crisis-updated').textContent = data.updated_note;
+    }
+    
+    // Also update sidebar meter if present
+    const sidebarMarker = document.getElementById('sidebar-meter-marker');
+    if (sidebarMarker) {
+      sidebarMarker.style.left = data.level + '%';
+    }
+    const sidebarLabel = document.getElementById('sidebar-meter-label');
+    if (sidebarLabel) {
+      sidebarLabel.textContent = data.label;
+    }
+    const sidebarDesc = document.getElementById('sidebar-meter-desc');
+    if (sidebarDesc) {
+      sidebarDesc.textContent = data.description;
+    }
+  }
+
+  // Load articles from CMS
+  async function loadArticles() {
+    try {
+      const response = await fetch('_data/articles.json');
+      const data = await response.json();
+      const articles = data.articles || [];
+      
+      // Find featured article (hero)
+      const featured = articles.find(a => a.featured) || articles[0];
+      
+      // Get other articles for sidebar and secondary
+      const otherArticles = articles.filter(a => a !== featured);
+      
+      // Render hero article
+      if (featured) {
+        const heroContainer = document.querySelector('.hero-article');
+        if (heroContainer) {
+          heroContainer.innerHTML = `
+            <span class="article-tag">${window.StateOfRochester.getCategoryDisplay(featured.category)}</span>
+            <h2><a href="article.html?slug=${featured.slug}">${featured.title}</a></h2>
+            <div class="byline">By ${featured.author} · ${featured.date} · ${featured.read_time}</div>
+            <div class="hero-divider"></div>
+            <p>${featured.dek || 'Click to read the full story.'}</p>
+          `;
+        }
+      }
+      
+      // Render sidebar articles
+      const sidebarContainer = document.querySelector('.sidebar-articles');
+      if (sidebarContainer && otherArticles.length > 0) {
+        let sidebarHTML = '';
+        otherArticles.slice(0, 4).forEach(article => {
+          sidebarHTML += `
+            <article class="sidebar-article">
+              <div class="article-tag">${window.StateOfRochester.getCategoryDisplay(article.category)}</div>
+              <h3><a href="article.html?slug=${article.slug}">${article.title}</a></h3>
+              <div class="byline">${article.date} · ${article.read_time}</div>
+            </article>
+          `;
+        });
+        sidebarContainer.innerHTML = sidebarHTML;
+      }
+      
+      // Render secondary articles
+      const secondaryContainer = document.querySelector('.secondary-row');
+      if (secondaryContainer && otherArticles.length > 4) {
+        let secondaryHTML = '';
+        otherArticles.slice(4, 7).forEach(article => {
+          secondaryHTML += `
+            <article class="secondary-article">
+              <div class="article-tag">${window.StateOfRochester.getCategoryDisplay(article.category)}</div>
+              <h3><a href="article.html?slug=${article.slug}">${article.title}</a></h3>
+              <p>${article.dek || 'Click to read more.'}</p>
+              <div class="byline">${article.date} · ${article.read_time}</div>
+            </article>
+          `;
+        });
+        // Replace content between the div tags
+        secondaryContainer.innerHTML = secondaryHTML;
+      }
+    } catch (error) {
+      console.error('Error loading articles:', error);
+    }
+  }
+
   // AJAX form submission — bypasses Formspree's default thank-you page
   // and redirects to our own thankyou.html instead
   function handleFormSubmit(formId) {
@@ -918,24 +1012,12 @@
   const d = new Date();
   document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  // Set crisis meter "last updated" timestamp
+  // Set crisis meter "last updated" timestamp (will be overridden by CMS data)
   document.getElementById('crisis-updated').textContent = 'Updated ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 
-  /*
-    ── HOW TO UPDATE THE CRISIS METER ──
-    To change the meter level, edit these two values:
-      - meterLevel: a number from 0 (Critical) to 100 (All Clear)
-      - statusLabel: the text label shown next to the title
-      - statusDesc: the description below the bar
-    Then save the file and re-deploy to Netlify.
-  */
-  const meterLevel = 38; // 0 = Critical, 100 = All Clear
-  const statusLabel = "Elevated Concern";
-  const statusDesc = "Multiple ongoing concerns: increased reports of property crime in the South Wedge, continued road closures on Rt. 104, and city budget negotiations entering a critical phase. Residents are advised to stay informed.";
-
-  document.getElementById('meter-marker').style.left = meterLevel + '%';
-  document.getElementById('crisis-label').textContent = statusLabel;
-  document.getElementById('crisis-desc').textContent = statusDesc;
+  // Load dynamic content from CMS
+  loadCrisisMeter();
+  loadArticles();
 </script>
 
 </body>

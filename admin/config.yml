@@ -96,6 +96,51 @@ collections:
         default: false
         hint: If checked, this article will appear as the top story on the homepage
 
+  - name: articles_index
+    label: Articles Index
+    files:
+      - name: articles
+        label: Articles Index
+        file: _data/articles.json
+        fields:
+          - label: Articles
+            name: articles
+            widget: list
+            fields:
+              - label: Slug
+                name: slug
+                widget: string
+              - label: Title
+                name: title
+                widget: string
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - { label: Safety, value: safety }
+                  - { label: Schools, value: schools }
+                  - { label: Neighborhoods, value: neighborhoods }
+                  - { label: Events, value: events }
+                  - { label: Health, value: health }
+                  - { label: Infrastructure, value: infrastructure }
+                  - { label: City Hall, value: city-hall }
+              - label: Date
+                name: date
+                widget: string
+              - label: Author
+                name: author
+                widget: string
+              - label: Read Time
+                name: read_time
+                widget: string
+              - label: Featured
+                name: featured
+                widget: boolean
+              - label: Dek (Summary)
+                name: dek
+                widget: text
+                required: false
+
   - name: settings
     label: Site Settings
     files:

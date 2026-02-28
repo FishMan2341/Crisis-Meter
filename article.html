@@ -23,7 +23,6 @@
       line-height: 1.6;
     }
 
-    /* ── MASTHEAD ── */
     .masthead {
       background: var(--ink);
       color: var(--paper);
@@ -78,7 +77,6 @@
       text-transform: uppercase;
     }
 
-    /* ── NAV ── */
     nav {
       background: var(--paper-dark);
       border-bottom: 2px solid var(--ink);
@@ -101,7 +99,6 @@
     nav a:hover { background: var(--ink); color: var(--paper); }
     nav a.active { background: var(--accent); color: #fff; }
 
-    /* ── BREADCRUMB ── */
     .breadcrumb {
       max-width: 1100px;
       margin: 0 auto;
@@ -116,7 +113,6 @@
     .breadcrumb a:hover { color: var(--ink); }
     .breadcrumb span { margin: 0 0.4rem; }
 
-    /* ── ARTICLE LAYOUT ── */
     .article-wrap {
       max-width: 1100px;
       margin: 0 auto;
@@ -127,7 +123,6 @@
       align-items: start;
     }
 
-    /* ── ARTICLE HEADER ── */
     .article-header {
       margin-bottom: 2rem;
       padding-bottom: 1.5rem;
@@ -177,7 +172,6 @@
     }
     .article-meta-divider { color: #ccc; }
 
-    /* ── HERO IMAGE ── */
     .hero-image-wrap {
       margin-bottom: 2rem;
       animation: fadeUp 0.5s ease 0.1s both;
@@ -185,7 +179,6 @@
     .hero-image-wrap img {
       width: 100%;
       display: block;
-      /* Placeholder: replace src with your actual image */
     }
     .hero-image-placeholder {
       width: 100%;
@@ -218,7 +211,6 @@
       margin-top: 0.3rem;
     }
 
-    /* ── ARTICLE BODY ── */
     .article-body {
       animation: fadeUp 0.5s ease 0.15s both;
     }
@@ -266,7 +258,6 @@
       margin-top: 0.5rem;
     }
 
-    /* ── SHARE BAR ── */
     .share-bar {
       display: flex;
       align-items: center;
@@ -304,7 +295,6 @@
     .share-btn:hover { background: var(--ink); color: var(--paper); }
     .share-btn.copied { background: #27ae60; color: #fff; border-color: #27ae60; }
 
-    /* ── BACK TO NEWS ── */
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -319,7 +309,6 @@
     }
     .back-link:hover { color: var(--ink); }
 
-    /* ── SIDEBAR ── */
     .article-sidebar {
       position: sticky;
       top: 2rem;
@@ -342,7 +331,6 @@
       border-bottom: 2px solid var(--ink);
     }
 
-    /* Meter mini widget */
     .mini-meter-bar {
       width: 100%;
       height: 10px;
@@ -385,7 +373,6 @@
     }
     .mini-meter-link:hover { color: var(--ink); }
 
-    /* Recent articles */
     .recent-article {
       padding: 0.8rem 0;
       border-bottom: 1px solid #eee;
@@ -415,7 +402,6 @@
       margin-top: 0.2rem;
     }
 
-    /* Tip CTA widget */
     .tip-cta {
       background: var(--ink);
       color: var(--paper);
@@ -444,7 +430,6 @@
     }
     .tip-cta a:hover { background: #a93226; }
 
-    /* ── FOOTER ── */
     footer {
       background: var(--ink);
       color: #777;
@@ -494,33 +479,23 @@
   <a href="tips.html">Tips</a>
 </nav>
 
-<!-- BREADCRUMB -->
 <div class="breadcrumb">
   <a href="index.html">Home</a>
   <span>›</span>
-  <!--
-    UPDATE THIS: Change the category link and label to match the article's category.
-    Example categories: Safety, City Hall, Neighborhoods, Events, Health, Infrastructure
-  -->
-  <a href="#">City Hall</a>
+  <a href="#" id="breadcrumb-category">City Hall</a>
   <span>›</span>
-  <span style="color:var(--ink);">Article Title</span>
+  <span style="color:var(ink);" id="breadcrumb-title">Article Title</span>
 </div>
 
 <div class="article-wrap">
 
-  <!-- ── MAIN ARTICLE COLUMN ── -->
   <main>
 
     <header class="article-header">
-      <!--
-        UPDATE THIS: Change the category tag color/text, title, dek, and metadata.
-        To change the tag color: replace background color inline or use a class.
-      -->
-      <span class="article-tag">City Hall</span>
-      <h1 class="article-title">Rochester City Council Votes on Controversial 2025 Budget — What It Means for You</h1>
-      <p class="article-dek">A $600 million spending plan passed late Tuesday, bringing cuts to parks, more funding for policing, and a proposed 3.2% property tax increase that has divided the city.</p>
-      <div class="article-meta">
+      <span class="article-tag" id="article-category">City Hall</span>
+      <h1 class="article-title" id="article-title">Rochester City Council Votes on Controversial 2025 Budget — What It Means for You</h1>
+      <p class="article-dek" id="article-dek">A $600 million spending plan passed late Tuesday, bringing cuts to parks, more funding for policing, and a proposed 3.2% property tax increase that has divided the city.</p>
+      <div class="article-meta" id="article-meta">
         <span>By Staff Reporter</span>
         <span class="article-meta-divider">·</span>
         <span>February 26, 2025</span>
@@ -529,14 +504,7 @@
       </div>
     </header>
 
-    <!--
-      HERO IMAGE
-      Option A — Using a real image: replace the placeholder div below with:
-        <img src="your-image.jpg" alt="Description of image" style="width:100%;display:block;" />
-
-      Option B — No image: delete this entire .hero-image-wrap block.
-    -->
-    <div class="hero-image-wrap">
+    <div class="hero-image-wrap" id="hero-image-wrap">
       <div class="hero-image-placeholder">
         <span class="placeholder-icon">🖼</span>
         <p>Replace with article hero image</p>
@@ -544,13 +512,7 @@
       <p class="image-caption">Caption describing the image · Credit: Photographer Name</p>
     </div>
 
-    <!--
-      ARTICLE BODY
-      Write your article here. Use <p> for paragraphs, <h2> for subheadings,
-      and <blockquote> with <cite> for quotes from sources.
-      The first paragraph gets a decorative drop cap automatically.
-    -->
-    <div class="article-body">
+    <div class="article-body" id="article-body">
       <p>After weeks of heated debate, the Rochester City Council cast their final votes late Tuesday evening on a $600 million budget proposal that will reshape public services across the Flower City. The plan includes cuts to the parks department, increased funding for community policing, and a controversial proposal to raise property taxes by 3.2% — a decision that has residents and local business owners deeply divided.</p>
 
       <p>Advocates for low-income neighborhoods argue the cuts disproportionately affect the city's most vulnerable residents, while the Mayor's office maintains the budget is a necessary step toward long-term fiscal stability.</p>
@@ -571,31 +533,20 @@
       <p>The council also approved a modest increase in funding for the city's housing assistance program, though advocates say the amount falls well short of what's needed to address Rochester's growing housing affordability crisis.</p>
     </div>
 
-    <!-- SHARE BAR -->
     <div class="share-bar">
       <span class="share-label">Share this story</span>
-      <a class="share-btn" id="share-x" href="#" target="_blank" rel="noopener">
-        𝕏 Twitter
-      </a>
-      <a class="share-btn" id="share-fb" href="#" target="_blank" rel="noopener">
-        Facebook
-      </a>
-      <a class="share-btn" id="share-email" href="#">
-        ✉ Email
-      </a>
-      <button class="share-btn" id="share-copy" onclick="copyLink()">
-        🔗 Copy Link
-      </button>
+      <a class="share-btn" id="share-x" href="#" target="_blank" rel="noopener">𝕏 Twitter</a>
+      <a class="share-btn" id="share-fb" href="#" target="_blank" rel="noopener">Facebook</a>
+      <a class="share-btn" id="share-email" href="#">✉ Email</a>
+      <button class="share-btn" id="share-copy" onclick="copyLink()">🔗 Copy Link</button>
     </div>
 
     <a href="index.html" class="back-link">← Back to all stories</a>
 
   </main>
 
-  <!-- ── SIDEBAR ── -->
   <aside class="article-sidebar">
 
-    <!-- Crisis Meter mini widget -->
     <div class="sidebar-widget">
       <div class="sidebar-widget-label">Community Crisis Meter</div>
       <div class="mini-meter-label" id="sidebar-meter-label">Elevated Concern</div>
@@ -606,32 +557,32 @@
       <a href="index.html" class="mini-meter-link">View full meter →</a>
     </div>
 
-    <!-- Recent articles -->
     <div class="sidebar-widget">
       <div class="sidebar-widget-label">Recent Stories</div>
-      <div class="recent-article">
-        <div class="tag">Safety</div>
-        <h4><a href="#">South Wedge Reports Spike in Car Break-Ins; RPD Increases Patrols</a></h4>
-        <div class="date">Feb 25, 2025</div>
-      </div>
-      <div class="recent-article">
-        <div class="tag">Infrastructure</div>
-        <h4><a href="#">Route 104 Closure Extended Through March</a></h4>
-        <div class="date">Feb 24, 2025</div>
-      </div>
-      <div class="recent-article">
-        <div class="tag">Community</div>
-        <h4><a href="#">Highland Park Lilac Festival 2025 Announces Full Schedule</a></h4>
-        <div class="date">Feb 23, 2025</div>
-      </div>
-      <div class="recent-article">
-        <div class="tag">Schools</div>
-        <h4><a href="#">RCSD Announces New After-School Programs Amid Funding Uncertainty</a></h4>
-        <div class="date">Feb 22, 2025</div>
+      <div id="recent-articles-container">
+        <div class="recent-article">
+          <div class="tag">Safety</div>
+          <h4><a href="#">South Wedge Reports Spike in Car Break-Ins; RPD Increases Patrols</a></h4>
+          <div class="date">Feb 25, 2025</div>
+        </div>
+        <div class="recent-article">
+          <div class="tag">Infrastructure</div>
+          <h4><a href="#">Route 104 Closure Extended Through March</a></h4>
+          <div class="date">Feb 24, 2025</div>
+        </div>
+        <div class="recent-article">
+          <div class="tag">Community</div>
+          <h4><a href="#">Highland Park Lilac Festival 2025 Announces Full Schedule</a></h4>
+          <div class="date">Feb 23, 2025</div>
+        </div>
+        <div class="recent-article">
+          <div class="tag">Schools</div>
+          <h4><a href="#">RCSD Announces New After-School Programs Amid Funding Uncertainty</a></h4>
+          <div class="date">Feb 22, 2025</div>
+        </div>
       </div>
     </div>
 
-    <!-- Tip CTA -->
     <div class="sidebar-widget" style="border:none;padding:0;">
       <div class="tip-cta">
         <p><strong>Have a tip about this story?</strong> Community sources keep this reporting accurate.</p>
@@ -641,7 +592,7 @@
 
   </aside>
 
-</div><!-- /article-wrap -->
+</div>
 
 <footer>
   <div class="footer-title">StateOfRochester</div>
@@ -649,38 +600,127 @@
   <p style="margin-top:0.5rem">© 2025 StateOfRochester. All rights reserved.</p>
 </footer>
 
+<script src="js/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
-  // Date
-  const d = new Date();
+  var d = new Date();
   document.getElementById('todays-date').textContent = d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-  // Share buttons — auto-populate with current page URL and title
-  const pageUrl = encodeURIComponent(window.location.href);
-  const pageTitle = encodeURIComponent(document.querySelector('.article-title').textContent);
-  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
-  document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
-  document.getElementById('share-email').href = `mailto:?subject=${pageTitle}&body=Thought you might find this interesting: ${pageUrl}`;
-
   function copyLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      const btn = document.getElementById('share-copy');
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      var btn = document.getElementById('share-copy');
       btn.textContent = '✓ Copied!';
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = '🔗 Copy Link'; btn.classList.remove('copied'); }, 2000);
+      setTimeout(function() { btn.textContent = '🔗 Copy Link'; btn.classList.remove('copied'); }, 2000);
     });
   }
 
-  /*
-    ── CRISIS METER SIDEBAR ──
-    Keep this in sync with the meterLevel value in index.html.
-    Update both files whenever you change the meter.
-  */
-  const meterLevel = 38;
-  const meterLabel = "Elevated Concern";
-  const meterDesc = "Multiple ongoing concerns across the city. Residents are advised to stay informed.";
-  document.getElementById('sidebar-meter-marker').style.left = meterLevel + '%';
-  document.getElementById('sidebar-meter-label').textContent = meterLabel;
-  document.getElementById('sidebar-meter-desc').textContent = meterDesc;
+  async function loadArticle() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var slug = urlParams.get('slug');
+    if (!slug) return;
+    
+    try {
+      var response = await fetch('_data/articles.json');
+      var data = await response.json();
+      var article = null;
+      for (var i = 0; i < data.articles.length; i++) {
+        if (data.articles[i].slug === slug) {
+          article = data.articles[i];
+          break;
+        }
+      }
+      if (!article) return;
+      
+      document.title = article.title + ' — StateOfRochester';
+      
+      var categoryTag = document.getElementById('article-category');
+      if (categoryTag) categoryTag.textContent = window.StateOfRochester.getCategoryDisplay(article.category);
+      
+      var title = document.getElementById('article-title');
+      if (title) title.textContent = article.title;
+      
+      var dek = document.getElementById('article-dek');
+      if (dek) dek.textContent = article.dek || '';
+      
+      var breadcrumbCategory = document.getElementById('breadcrumb-category');
+      if (breadcrumbCategory) {
+        breadcrumbCategory.href = article.category + '.html';
+        breadcrumbCategory.textContent = window.StateOfRochester.getCategoryDisplay(article.category);
+      }
+      
+      var breadcrumbTitle = document.getElementById('breadcrumb-title');
+      if (breadcrumbTitle) breadcrumbTitle.textContent = article.title;
+      
+      var metaDiv = document.getElementById('article-meta');
+      if (metaDiv) {
+        metaDiv.innerHTML = '<span>By ' + article.author + '</span><span class="article-meta-divider">·</span><span>' + article.date + '</span><span class="article-meta-divider">·</span><span>' + article.read_time + '</span>';
+      }
+      
+      var markdown = await window.StateOfRochester.fetchArticle(slug);
+      if (markdown) {
+        var parsed = window.StateOfRochester.parseFrontmatter(markdown);
+        var htmlContent = marked.parse(parsed.content);
+        
+        var articleBody = document.getElementById('article-body');
+        if (articleBody) articleBody.innerHTML = htmlContent;
+        
+        if (parsed.metadata.hero_image) {
+          var heroWrap = document.getElementById('hero-image-wrap');
+          if (heroWrap) heroWrap.innerHTML = '<img src="' + parsed.metadata.hero_image + '" alt="" style="width:100%;display:block;" />';
+        }
+      }
+      
+      var pageUrl = encodeURIComponent(window.location.href);
+      var pageTitle = encodeURIComponent(article.title);
+      document.getElementById('share-x').href = 'https://twitter.com/intent/tweet?url=' + pageUrl + '&text=' + pageTitle;
+      document.getElementById('share-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + pageUrl;
+      document.getElementById('share-email').href = 'mailto:?subject=' + pageTitle + '&body=' + pageUrl;
+      
+    } catch (e) { 
+      console.error(e); 
+    }
+  }
+
+  async function loadCrisisMeter() {
+    var data = await window.StateOfRochester.fetchCrisisMeter();
+    document.getElementById('sidebar-meter-marker').style.left = data.level + '%';
+    document.getElementById('sidebar-meter-label').textContent = data.label;
+    document.getElementById('sidebar-meter-desc').textContent = data.description;
+  }
+
+  async function loadRecentArticles() {
+    try {
+      var response = await fetch('_data/articles.json');
+      var data = await response.json();
+      var urlParams = new URLSearchParams(window.location.search);
+      var currentSlug = urlParams.get('slug');
+      
+      var recentArticles = [];
+      for (var i = 0; i < data.articles.length; i++) {
+        if (data.articles[i].slug !== currentSlug) {
+          recentArticles.push(data.articles[i]);
+        }
+        if (recentArticles.length >= 4) break;
+      }
+      
+      var container = document.getElementById('recent-articles-container');
+      if (container && recentArticles.length > 0) {
+        var html = '';
+        for (var j = 0; j < recentArticles.length; j++) {
+          var a = recentArticles[j];
+          html = html + '<div class="recent-article"><div class="tag">' + window.StateOfRochester.getCategoryDisplay(a.category) + '</div><h4><a href="article.html?slug=' + a.slug + '">' + a.title + '</a></h4><div class="date">' + a.date + '</div></div>';
+        }
+        container.innerHTML = html;
+      }
+    } catch (e) { 
+      console.error(e); 
+    }
+  }
+
+  loadArticle();
+  loadCrisisMeter();
+  loadRecentArticles();
 </script>
 
 </body>
