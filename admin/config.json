@@ -3,7 +3,7 @@
     "name": "github",
     "repo": "FishMan2341/stateofochester",
     "branch": "main",
-    "auth_endpoint": "https://crisis-meter.vercel.app/api/auth"
+    "base_url": "https://decap-proxy.netlify.app"
   },
   "media_folder": "images/uploads",
   "public_folder": "/images/uploads",
