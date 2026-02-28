@@ -2,8 +2,7 @@ backend:
   name: github
   repo: FishMan2341/stateofochester
   branch: main
-  auth_type: pkce
-  app_id: Ov23liH02WRAfllQYxnh
+  base_url: https://decap-proxy.netlify.app
 
 media_folder: images/uploads
 public_folder: /images/uploads
