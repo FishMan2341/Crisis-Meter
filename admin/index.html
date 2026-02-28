@@ -15,7 +15,7 @@
       window.location.href = window.location.href + (window.location.search ? '&' : '?') + 'nocache=' + Date.now();
     }
   </script>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js?v=3"></script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js?v=4"></script>
   <script>
     CMS.init({
       config: {
@@ -23,7 +23,8 @@
           name: "github",
           repo: "FishMan2341/stateofochester",
           branch: "main",
-          auth_type: "pkce",
+          base_url: "https://api.netlify.com",
+          auth_endpoint: "auth",
           app_id: "Ov23liH02WRAfllQYxnh"
         },
         media_folder: "images/uploads",
