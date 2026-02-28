@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: FishMan2341/stateofochester
+  repo: FishMan2341/Crisis-Meter
   branch: main
   base_url: https://crisis-meter.vercel.app
   auth_endpoint: api/auth
