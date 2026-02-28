@@ -7,5 +7,132 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // Function to get label based on level
+    function getLabelForLevel(level) {
+      if (level <= 20) return 'Critical';
+      if (level <= 40) return 'High Concern';
+      if (level <= 60) return 'Moderate';
+      if (level <= 80) return 'Stable';
+      return 'All Clear';
+    }
+
+    // Function to get updated note
+    function getUpdatedNote() {
+      const now = new Date();
+      return 'Updated ' + now.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric' 
+      });
+    }
+
+    // Function to find and update the form fields
+    function updateCrisisMeterFields(level) {
+      // Find all inputs and textareas in the CMS
+      const inputs = document.querySelectorAll('input, textarea');
+      
+      let levelInput = null;
+      let labelInput = null;
+      let updatedNoteInput = null;
+      
+      // Look for inputs by their name attribute or placeholder
+      inputs.forEach(input => {
+        const name = input.name || input.getAttribute('data-field-name') || input.placeholder || '';
+        if (name === 'level' || name.includes('level')) {
+          levelInput = input;
+        }
+        if (name === 'label' || name.includes('label')) {
+          labelInput = input;
+        }
+        if (name === 'updated_note' || name.includes('updated')) {
+          updatedNoteInput = input;
+        }
+      });
+      
+      // If we found the level input, add listener and update other fields
+      if (levelInput) {
+        // Set initial values if level has a value
+        const currentLevel = levelInput.value || level;
+        if (currentLevel && labelInput) {
+          labelInput.value = getLabelForLevel(parseInt(currentLevel));
+        }
+        if (currentLevel && updatedNoteInput) {
+          updatedNoteInput.value = getUpdatedNote();
+        }
+        
+        // Add listener for changes
+        levelInput.addEventListener('input', function() {
+          const newLevel = parseInt(this.value);
+          if (!isNaN(newLevel)) {
+            if (labelInput) {
+              labelInput.value = getLabelForLevel(newLevel);
+              // Trigger input event for CMS to recognize the change
+              labelInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            if (updatedNoteInput) {
+              updatedNoteInput.value = getUpdatedNote();
+              updatedNoteInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+          }
+        });
+      }
+    }
+
+    // Wait for CMS to be ready and DOM to be fully loaded
+    function initCrisisMeterAutoUpdate() {
+      // Try to find the level field and set up listeners
+      // We'll keep trying until we find it (CMS loads dynamically)
+      let attempts = 0;
+      const maxAttempts = 50;
+      
+      const trySetup = function() {
+        attempts++;
+        const levelInput = document.querySelector('input[name="level"]') || 
+                          document.querySelector('input[data-field-name="level"]');
+        
+        if (levelInput) {
+          updateCrisisMeterFields(levelInput.value || 50);
+          console.log('Crisis Meter auto-update initialized');
+        } else if (attempts < maxAttempts) {
+          // Keep trying until CMS loads the form
+          setTimeout(trySetup, 200);
+        }
+      };
+      
+      // Start trying after a short delay
+      setTimeout(trySetup, 1000);
+    }
+
+    // Also use CMS event for preSave to ensure values are set
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: function({ entry }) {
+        const level = entry.getIn(['data', 'level']);
+        
+        if (level !== undefined && level !== null) {
+          const label = getLabelForLevel(level);
+          const updatedNote = getUpdatedNote();
+          
+          console.log('Auto-updating crisis meter on save:', { level, label, updatedNote });
+          
+          return {
+            data: {
+              label: label,
+              updated_note: updatedNote
+            }
+          };
+        }
+        return entry;
+      }
+    });
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCrisisMeterAutoUpdate);
+    } else {
+      initCrisisMeterAutoUpdate();
+    }
+  </script>
 </body>
 </html>
