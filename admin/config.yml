@@ -1,12 +1,14 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: FishMan2341/stateofochester
   branch: main
+  auth_endpoint: https://crisis-meter.vercel.app/api/auth
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
 
-site_url: https://crisismeter.netlify.app
-display_url: https://crisismeter.netlify.app
+site_url: https://crisis-meter.vercel.app
+display_url: https://crisis-meter.vercel.app
 
 collections:
 
