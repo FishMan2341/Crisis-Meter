@@ -2,7 +2,8 @@ backend:
   name: github
   repo: FishMan2341/stateofochester
   branch: main
-  base_url: https://decap-proxy.netlify.app
+  auth_type: pkce
+  app_id: Ov23liH02WRAfllQYxnh
 
 media_folder: images/uploads
 public_folder: /images/uploads
@@ -31,11 +32,11 @@ collections:
           - label: Status Description
             name: description
             widget: text
-            hint: "Short explanation shown below the meter bar on the homepage"
+            hint: Short explanation shown below the meter bar on the homepage
           - label: Last Updated Note
             name: updated_note
             widget: string
-            hint: "Optional context about when/why it was last changed"
+            hint: Optional context about when/why it was last changed
 
   - name: articles
     label: Articles
@@ -56,24 +57,17 @@ collections:
         name: category
         widget: select
         options:
-          - label: Safety
-            value: safety
-          - label: Schools
-            value: schools
-          - label: Neighborhoods
-            value: neighborhoods
-          - label: Events
-            value: events
-          - label: Health
-            value: health
-          - label: Infrastructure
-            value: infrastructure
-          - label: City Hall
-            value: city-hall
+          - { label: Safety, value: safety }
+          - { label: Schools, value: schools }
+          - { label: Neighborhoods, value: neighborhoods }
+          - { label: Events, value: events }
+          - { label: Health, value: health }
+          - { label: Infrastructure, value: infrastructure }
+          - { label: City Hall, value: city-hall }
       - label: Author
         name: author
         widget: string
-        default: "Staff Reporter"
+        default: Staff Reporter
       - label: Read Time
         name: read_time
         widget: string
@@ -83,12 +77,12 @@ collections:
         name: dek
         widget: text
         required: false
-        hint: "One or two sentence summary shown below the headline"
+        hint: One or two sentence summary shown below the headline
       - label: Hero Image
         name: hero_image
         widget: image
         required: false
-        hint: "Optional. Displayed at the top of the article."
+        hint: Optional. Displayed at the top of the article.
       - label: Hero Image Caption
         name: hero_caption
         widget: string
@@ -100,7 +94,7 @@ collections:
         name: featured
         widget: boolean
         default: false
-        hint: "If checked, this article will appear as the top story on the homepage"
+        hint: If checked, this article will appear as the top story on the homepage
 
   - name: settings
     label: Site Settings
@@ -112,7 +106,7 @@ collections:
           - label: Site Tagline
             name: tagline
             widget: string
-            default: "The community pulse of the Flower City"
+            default: The community pulse of the Flower City
           - label: Footer Copyright Text
             name: copyright
             widget: string
