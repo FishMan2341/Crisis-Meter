@@ -9,7 +9,13 @@
   <title>StateOfRochester · Admin</title>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js?v=2"></script>
+  <script>
+    // Force cache bust - reload once if this is a cached version
+    if (!window.location.search.includes('nocache=')) {
+      window.location.href = window.location.href + (window.location.search ? '&' : '?') + 'nocache=' + Date.now();
+    }
+  </script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js?v=3"></script>
   <script>
     CMS.init({
       config: {
