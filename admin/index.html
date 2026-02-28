@@ -4,10 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>StateOfRochester · Admin</title>
-  <!-- Netlify Identity Widget — enables GitHub login button -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <script>
+    // Point Decap CMS explicitly to the config file
+    window.CMS_CONFIG_URL = '/admin/config.yml';
+  </script>
   <!-- Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </body>
