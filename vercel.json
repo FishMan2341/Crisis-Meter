@@ -1,17 +1,23 @@
 {
-  "headers": [
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [],
+  "routes": [
     {
-      "source": "/admin/config.yml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/yaml"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
+      "src": "/admin/config.json",
+      "dest": "/admin/config.json"
+    },
+    {
+      "src": "/admin",
+      "dest": "/admin/index.html"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
