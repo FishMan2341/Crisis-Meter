@@ -213,6 +213,14 @@
       text-transform: uppercase;
       color: #666;
     }
+    .meter-label {
+      transition: color 0.3s, font-weight 0.3s, transform 0.3s;
+    }
+    .meter-label.active {
+      color: #f1c40f;
+      font-weight: 700;
+      transform: scale(1.1);
+    }
 
     .crisis-desc {
       margin-top: 1rem;
@@ -610,11 +618,11 @@
         <div class="meter-marker" id="meter-marker" style="left: 38%;"></div>
       </div>
       <div class="meter-labels">
-        <span>🔴 Critical</span>
-        <span>High</span>
-        <span>Moderate</span>
-        <span>Stable</span>
-        <span>All Clear 🟢</span>
+        <span class="meter-label" id="label-critical">🔴 Critical</span>
+        <span class="meter-label" id="label-high">High</span>
+        <span class="meter-label" id="label-moderate">Moderate</span>
+        <span class="meter-label" id="label-stable">Stable</span>
+        <span class="meter-label" id="label-allclear">All Clear 🟢</span>
       </div>
     </div>
     <p class="crisis-desc" id="crisis-desc">
@@ -821,6 +829,24 @@
     document.getElementById('meter-marker').style.left = data.level + '%';
     document.getElementById('crisis-label').textContent = data.label;
     document.getElementById('crisis-desc').textContent = data.description;
+    
+    // Highlight the appropriate meter label based on level
+    const level = data.level;
+    const labels = ['label-critical', 'label-high', 'label-moderate', 'label-stable', 'label-allclear'];
+    let activeLabel;
+    if (level < 20) activeLabel = 'label-critical';
+    else if (level < 40) activeLabel = 'label-high';
+    else if (level < 60) activeLabel = 'label-moderate';
+    else if (level < 80) activeLabel = 'label-stable';
+    else activeLabel = 'label-allclear';
+    
+    labels.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        if (id === activeLabel) el.classList.add('active');
+        else el.classList.remove('active');
+      }
+    });
     
     if (data.updated_note) {
       document.getElementById('crisis-updated').textContent = data.updated_note;

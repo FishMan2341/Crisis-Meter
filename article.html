@@ -355,6 +355,9 @@
       font-weight: 700;
       margin-bottom: 0.3rem;
     }
+    .mini-meter-label.active {
+      color: #f1c40f;
+    }
     .mini-meter-desc {
       font-size: 0.8rem;
       color: #666;
@@ -687,6 +690,9 @@
     document.getElementById('sidebar-meter-marker').style.left = data.level + '%';
     document.getElementById('sidebar-meter-label').textContent = data.label;
     document.getElementById('sidebar-meter-desc').textContent = data.description;
+    
+    // Highlight the label based on level - always active since it shows the current status
+    document.getElementById('sidebar-meter-label').classList.add('active');
   }
 
   async function loadRecentArticles() {
