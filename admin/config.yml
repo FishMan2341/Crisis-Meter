@@ -2,7 +2,8 @@ backend:
   name: github
   repo: FishMan2341/stateofochester
   branch: main
-  base_url: https://decap-proxy.netlify.app
+  base_url: https://crisis-meter.vercel.app
+  auth_endpoint: api/auth
 
 media_folder: images/uploads
 public_folder: /images/uploads
